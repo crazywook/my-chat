@@ -1,0 +1,7 @@
+node_modules
+.vscode
+.prettierrc
+tslint.json
+e2e
+dist
+.node-version

@@ -1,0 +1,31 @@
+services:
+  mongo:
+    image: mongo:4
+    container_name: my-chat-mongodb
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_DATABASE=resources
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASS}
+  mqtt:
+    image: moscajs/aedes:latest
+    container_name: my-chat-mqtt
+    ports:
+      - 1883:1883
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - 4201:80
+  server:
+    depends_on:
+      - mongo
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=prod
+    ports:
+      - 3001:8000

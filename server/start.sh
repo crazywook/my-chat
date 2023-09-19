@@ -1,0 +1,1 @@
+node -r ./dist/tsconfigPathsBootstrap.js ./dist/src/main.js

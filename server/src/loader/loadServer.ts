@@ -5,8 +5,7 @@ const port = config.server.PORT;
 
 export async function loadServer() {
 
-  return new Promise((resolve, reject) => {
-
+  return new Promise((resolve, _reject) => {
     app.listen(port, () => {
       console.log(`server listen at ${port}`);
       resolve(true);
